@@ -1,0 +1,29 @@
+<h1>Create Listings</h1>
+<form (submit)="addBike()" #form = "ngForm">
+  Title:<input type="text" name="title" required [(ngModel)]="bike.title" #title="ngModel"><br>
+  <div *ngIf="!title.valid">Title is required</div><br>
+  Price:<input type="number" name="price" required [(ngModel)]="bike.price" #price="ngModel"><br>
+  Description:<textarea required name="description" [(ngModel)]="bike.description" #description="ngModel"></textarea><br>
+  <div *ngIf="!price.valid">Price is required</div><br>
+  <input type="submit" value="Add Bike!"><br>
+</form>
+
+<h1>My listings</h1>
+
+<table>
+  <tr>
+    <th>Price</th>
+    <th>Title</th>
+    <th>Location</th>
+    <th>Description</th>
+  </tr>
+  <tr *ngFor="let bike of bikes">
+    <td>{{bike.price}}</td>
+    <td>{{bike.title}}</td>
+    <td>{{bike.location}}</td>
+    <td>{{bike.description}}</td>
+    <td><button (click)="update()">Update</button></td>
+    <td><button (click)="remove()">Delete</button></td>
+  </tr>
+</table>
+

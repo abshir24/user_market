@@ -1,0 +1,32 @@
+<div style="display:inline-block;outline:solid black 2px">
+  <form (submit)="login()" #myFormo="ngForm">
+    <input type="text" name="emaill" [(ngModel)]="user.emaill" #emaill="ngModel" required><br>
+    <div *ngIf="!email.valid" style="color:red">Please enter a valid email</div><br>
+    <input type="password" name="passwordl" [(ngModel)]="user.passwordl" #passwordl="ngModel" required><br>
+    <input type="submit" [disabled]="!myFormo.form.valid" value="Login!"><br>
+  </form>
+  <div *ngIf="logerror" style="color:red">{{logerror}}</div>
+</div>
+
+<div style="display:inline-block;outline:solid black 2px">
+    <form #myForm="ngForm" (submit)="register()" method="post">
+        <label >First Name</label>
+        <input type="text" name="firstName" required minlength="2" [(ngModel)] = "user.firstname" #firstname='ngModel'><br>
+        <div class="error" *ngIf="!firstname.valid && (firstname.touched || firstname.dirty)">First Name is required</div><br>
+        
+        <label >Last Name</label>
+        <input type="text" name="lastName" required minlength="2" [(ngModel)] = "user.lastname" #lastname='ngModel'><br>
+        <div class="error" *ngIf="!lastname.valid && (lastname.touched || lastname.dirty)">Last Name is required</div><br>
+        
+        <label >Email</label>
+        <input type="text" name="email" required pattern="^([A-Za-z0-9._\-]+)@([a-zA-Z0-9._\-]+)\.([a-zA-Z]+)$" minlength="2" [(ngModel)] = "user.email" #email='ngModel'><br>
+        <div class="error" *ngIf="!email.valid && (email.touched || email.dirty)">Please enter a valid email</div><br>
+        
+        <label >Password</label>
+        <input type="password" name="password" required minlength="8" [(ngModel)] = "user.password" #password='ngModel'><br>
+        <div class="error" *ngIf="!password.valid && (password.touched || password.dirty)"> Password must be at least 8 characters long</div><br>
+
+        <input type="submit" [disabled]="!myForm.form.valid" name="" value="Register!">
+      </form>
+      <div *ngIf="regerror" style="color:red">{{regerror}}</div>
+</div>

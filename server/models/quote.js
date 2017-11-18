@@ -1,8 +1,25 @@
 // require mongoose
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 // create the schema
-var QuoteSchema = new mongoose.Schema({
-  note: String
-})
+var UserSchema = new mongoose.Schema({
+  firstname:String,
+  lastname:String,
+  email:String,
+  password:String,
+  bikes: [{type: Schema.Types.ObjectId, ref: 'Bike'}]
+},{timestamps:true})
 // register the schema as a model
-var Quote = mongoose.model('Quote', QuoteSchema);
+var User = mongoose.model('User', UserSchema);
+
+
+
+// create the schema
+var BikeSchema = new mongoose.Schema({
+  title:String,
+  price:Number,
+  description:String,
+  _user: {type: Schema.Types.ObjectId, ref: 'User'}
+},{timestamps:true})
+// register the schema as a model
+var Bike = mongoose.model('Bike', BikeSchema);

@@ -1,5 +1,0 @@
-<form (submit)="addNote()">
-  Note:<input type="text" name="note" minlength="3" required [(ngModel)]="newNote.note" #note="ngModel">
-  <div *ngIf="!note.valid" style="color:red">Note must be at least 3 characters</div>
-  <input type="submit" value="Add Note!">
-</form>

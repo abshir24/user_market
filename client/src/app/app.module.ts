@@ -2,17 +2,20 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NoteService } from 'app/note.service';
-import { NoteCreateComponent } from 'app/note-create/note-create.component';
-import { NoteListComponent } from 'app/note-list/note-list.component';
+import { BikeService } from 'app/bike.service';
+import { RegComponent } from './reg/reg.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ListingsComponent } from './listings/listings.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NoteCreateComponent,
-    NoteListComponent
+    RegComponent,
+    DashboardComponent,
+    ListingsComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +23,7 @@ import { NoteListComponent } from 'app/note-list/note-list.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [NoteService],
+  providers: [BikeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

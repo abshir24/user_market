@@ -1,5 +1,7 @@
 var controller = require('../controller/controller.js');
 module.exports = function(app){
-    app.get('/all',controller.allNotes)
-    app.post("/create",controller.create)
+    app.post('/login',controller.login)
+    app.post("/register",controller.register)
+    app.post('/addbike',controller.addbike)
+    app.get('/mybikes',controller.mybikes)
 }
