@@ -9,13 +9,15 @@ import { BikeService } from 'app/bike.service';
 import { RegComponent } from './reg/reg.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListingsComponent } from './listings/listings.component';
+import { UpdateComponent } from './update/update.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegComponent,
     DashboardComponent,
-    ListingsComponent
+    ListingsComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule,

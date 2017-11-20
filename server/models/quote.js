@@ -18,6 +18,7 @@ var User = mongoose.model('User', UserSchema);
 var BikeSchema = new mongoose.Schema({
   title:String,
   price:Number,
+  location:String,
   description:String,
   _user: {type: Schema.Types.ObjectId, ref: 'User'}
 },{timestamps:true})

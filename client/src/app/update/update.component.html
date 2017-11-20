@@ -1,5 +1,4 @@
-<h1>Create Listings</h1>
-<form (submit)="addBike()" #myForm = "ngForm">
+<form (submit)="update()" #myForm = "ngForm">
   Title:<input type ="text" name="title" required [(ngModel)]="bike.title" #title="ngModel" ><br>
   <div *ngIf="!title.valid" style="color:red">Title is required</div><br>
   Price:<input type="number" name="price" required [(ngModel)]="bike.price" #price="ngModel"><br>
@@ -10,24 +9,3 @@
   <div *ngIf="!description.valid" style="color:red">Description is required</div><br>
   <input type="submit" value="Add Bike!"><br>
 </form>
-
-<h1>My listings</h1>
-
-<table>
-  <tr>
-    <th>Price</th>
-    <th>Title</th>
-    <th>Location</th>
-    <th>Description</th>
-  </tr>
-  <tr *ngFor="let bike of bikes">
-    <td>{{bike.price}}</td>
-    <td>{{bike.title}}</td>
-    <td>{{bike.location}}</td>
-    <td>{{bike.description}}</td>
-    <td><a [routerLink]="['/update',bike._id]"><button>Update</button></a></td>
-    <td><button (click)="remove(bike._id)">Delete</button></td>
-  </tr>
-</table>
-  
-

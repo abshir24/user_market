@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class BikeService {
   bikes = []
-  constructor(private http:Http) { }
+  user;
+  constructor(private http:Http,private _router:Router) { }
 
 
   register(user,callback){
@@ -26,6 +28,7 @@ export class BikeService {
           callback("Wrong email password combo")
         }else{
           console.log("successful login")
+          this.user = res.json()
           callback(res.json())
         }
     })
@@ -34,22 +37,35 @@ export class BikeService {
   addBike(bike, callback){
     return this.http.post('/addbike',bike)
     .subscribe((res)=>{
-      console.log(res.json())
+      console.log("data from back-end", res)
       callback(res.json())
     })
+  
   }
 
   myBikes(callback){
     return this.http.get('/mybikes')
     .subscribe((res)=>{
-      console.log(res.json())
+      console.log("respsone my bikes service", res.json())
       callback(res.json())
+    })
+  
+  }
+
+  update(bike,id){
+    return this.http.post('/updatebike/'+id, bike)
+    .subscribe((res)=>{
+      console.log("res from update",res.json())
+      this._router.navigate(['/listings']);
     })
   }
 
-  deleteBike(id){
-    return this.http.get('/deletebike'+id)
-    .subscribe()
+  deleteBike(id,callback){
+    return this.http.get('/deletebike/'+id)
+    .subscribe((res)=>{
+      console.log("res from delete bike",res.json())
+      callback(res.json())
+    })
   }
 
   logout(){

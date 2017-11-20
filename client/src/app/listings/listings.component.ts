@@ -8,10 +8,11 @@ import { Bike } from 'app/bike';
   styleUrls: ['./listings.component.css']
 })
 export class ListingsComponent implements OnInit {
-  bike = new Bike()
+  bike = new Bike() 
   bikes = []
   constructor(private _service:BikeService) { 
     this._service.myBikes((data)=>{
+      console.log("constructor component data ", data)
       this.bikes = data
     })
   }
@@ -23,10 +24,13 @@ export class ListingsComponent implements OnInit {
     this._service.addBike(this.bike, (data)=>{
       this.bikes = data
     })
+    this.bike=new Bike()
   }
 
-  update(){
-
+  remove(id){
+    this._service.deleteBike(id,(data)=>{
+      this.bikes=data
+    })
   }
 
 }

@@ -27,7 +27,7 @@ module.exports = {
       }else{
         if(req.body.passwordl == user.password){
           req.session.user = user._id
-          res.json(true)
+          res.json(user)
         }else{
           res.json(false)
         }
@@ -36,30 +36,77 @@ module.exports = {
   },
 
   addbike:(req,res)=>{
-      User.findOne({_id: req.session.user}, function(err, user){
-        var bike = new Bike(req.body);
-        bike._user = user._id;
-        bike.save(function(err,bike){
-            user.bikes.push(bike);
-            user.save(function(err){
-                  if(err) {
-                      console.log('Error');
-                  } else {
-                      Bike.find({_user:req.session.user},(err,bikes)=>{
-                        res.json(bikes)
-                      })
-                  }
-              });
-        });
-    });
+    console.log("add bike", req.session.user)
+    User.findOne({_id:req.session.user},function(err,foundUser){
+      var bike = new Bike(req.body)
+
+      bike._user = foundUser._id
+
+      bike.save(function(err,bike){
+        foundUser.bikes.push(bike)
+        foundUser.save(function(err,user){
+          if(err){
+            console.log("bike did not save to user class")
+          } else{
+            Bike.find({_user:user._id}, function(err,bikes){
+              if(err){
+                console.log("could not find bikes")
+              }else{
+                res.json(bikes)
+              }
+            })
+          }
+        })
+      })
+      
+    })
   },
   mybikes:(req,res)=>{
     Bike.find({_user:req.session.user},(err,bikes)=>{
       if(err){
-        console.log("something went wrong")
+        console.log("my bikes error")
       }else{
         res.json(bikes)
       }
     })
+  },
+  update:(req,res)=>{
+    Bike.findOne({_id:req.params.id},(err,bike)=>{
+      bike.price = req.body.price
+      bike.location = req.body.location
+      bike.description = req.body.description
+      bike.title = req.body.title
+      bike.save((err,bike)=>{
+        if(err){
+          console.log("error updating bikes")
+        }else{
+          console.log("updated bike",bike)
+          Bike.find({_user:req.session.user},(err,bikes)=>{
+            if(err){
+              console.log("could not retrieve bikes")
+            }else{
+              res.json(bikes)
+            }
+          })
+        }
+      })
+    })
+  },
+  delete:(req,res)=>{
+    console.log("delete",req.params.id)
+    Bike.remove({_id: req.params.id}, function(err){
+      if(err){
+        console.log("error removing bikes")
+      }else{
+        Bike.find({_user:req.session.user},(err,bikes)=>{
+          if(err){
+            console.log("could not retrieve all bikes")
+          }else{
+            res.json(bikes)
+          }
+        })
+      }
+    })
   }
+
 }
