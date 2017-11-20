@@ -68,6 +68,22 @@ export class BikeService {
     })
   }
 
+  allBikes(callback){
+    return this.http.get('/allbikes')
+    .subscribe((res)=>{
+      console.log("all bikes",res.json())
+      callback(res.json())
+    })
+  }
+
+  retrieveUser(id,callback){
+    return this.http.get('/user/'+id)
+    .subscribe((res)=>{
+      console.log("user", res.json())
+      callback(res.json())
+    })
+  }
+
   logout(){
     
   }

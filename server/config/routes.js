@@ -6,5 +6,5 @@ module.exports = function(app){
     app.get('/mybikes',controller.mybikes)
     app.post('/updatebike/:id',controller.update)
     app.get('/deletebike/:id',controller.delete)
-
+    app.get('/allbikes',controller.allbikes)
 }

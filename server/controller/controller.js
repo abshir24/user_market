@@ -39,8 +39,8 @@ module.exports = {
     console.log("add bike", req.session.user)
     User.findOne({_id:req.session.user},function(err,foundUser){
       var bike = new Bike(req.body)
-
       bike._user = foundUser._id
+      bike.logged = false
 
       bike.save(function(err,bike){
         foundUser.bikes.push(bike)
@@ -105,6 +105,23 @@ module.exports = {
             res.json(bikes)
           }
         })
+      }
+    })
+  },
+  allbikes:(req,res)=>{
+    console.log("allbikes")
+
+    Bike.find({},(err,bikes)=>{
+      if(err){
+        console.log("err retrieving all bikes")
+      }else{
+        for(var i = 0;i<bikes.length;i++){
+          if(bikes[i]._user == req.session.user){
+            console.log("inside")
+            bikes[i].logged = true
+          }
+        }
+        res.json(bikes)
       }
     })
   }

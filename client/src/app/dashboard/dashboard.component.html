@@ -1,5 +1,27 @@
+<h1>Bicycle Market Place</h1>
+
 <div>
   <a [routerLink]="['/browse']">Browse</a>
   <a [routerLink]="['/listings']">My Listings</a>
   <a (click)="_service.logout()">Log off</a>
 </div>
+
+<div>
+  <table>
+    <tr>
+      <th>Price</th>
+      <th>Title</th>
+      <th>Location</th>
+      <th>Description</th>
+    </tr>
+    <tr *ngFor="let bike of bikes">
+      <td>{{bike.price}}</td>
+      <td>{{bike.title}}</td>
+      <td>{{bike.location}}</td>
+      <td>{{bike.description}}</td>
+      <td *ngIf="bike.logged"><button (click)="remove(bike._id)">Delete</button></td>
+      <td *ngIf="!bike.logged"><button (click)="contact(bike._user)">Contact</button></td>
+    </tr>
+  </table>
+</div>
+

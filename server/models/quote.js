@@ -20,6 +20,7 @@ var BikeSchema = new mongoose.Schema({
   price:Number,
   location:String,
   description:String,
+  logged:Boolean,
   _user: {type: Schema.Types.ObjectId, ref: 'User'}
 },{timestamps:true})
 // register the schema as a model
