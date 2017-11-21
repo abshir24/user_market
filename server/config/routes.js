@@ -7,4 +7,6 @@ module.exports = function(app){
     app.post('/updatebike/:id',controller.update)
     app.get('/deletebike/:id',controller.delete)
     app.get('/allbikes',controller.allbikes)
+    app.get('/user/:id',controller.user)
+    app.get('/logout',controller.logout)
 }

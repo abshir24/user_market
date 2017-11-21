@@ -21,10 +21,10 @@ export class DashboardComponent implements OnInit {
 
   contact(id){
     this._service.retrieveUser(id,(data)=>{
+      console.log("contact", data)
       this.user=data
+      alert("Name: " + this.user.firstname + " Email: " + this.user.email)
     })
-
-    alert("Name: " + this.user.firstname + " Email: " + this.user.email)
   }
 
   remove(id){

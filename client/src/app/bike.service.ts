@@ -85,7 +85,12 @@ export class BikeService {
   }
 
   logout(){
-    
+    console.log("logout")
+    return this.http.get('/logout')
+    .subscribe((res)=>{
+      console.log(res.json())
+      this._router.navigate(['']);
+    })
   }
 
 }

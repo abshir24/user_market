@@ -1,4 +1,9 @@
 <h1>Create Listings</h1>
+<div>
+  <a [routerLink]="['/browse']">Browse</a>
+  <a [routerLink]="['/listings']">My Listings</a>
+  <button (click)="_service.logout()">Log off</button>
+</div>
 <form (submit)="addBike()" #myForm = "ngForm">
   Title:<input type ="text" name="title" required [(ngModel)]="bike.title" #title="ngModel" ><br>
   <div *ngIf="!title.valid" style="color:red">Title is required</div><br>

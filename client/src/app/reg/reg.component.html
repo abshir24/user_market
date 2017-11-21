@@ -1,3 +1,12 @@
+<h1>Bike of the day</h1>
+
+<tr *ngIf="bike">
+  <td>{{bike.title}}</td>
+  <td>{{bike.price}}</td>
+  <td>{{bike.location}}</td>
+  <td>{{bike.description}}</td>
+</tr><br>
+
 <div style="display:inline-block;outline:solid black 2px">
   <form (submit)="login()" #myFormo="ngForm">
     <input type="text" name="emaill" [(ngModel)]="user.emaill" #emaill="ngModel" required><br>

@@ -12,7 +12,18 @@ export class RegComponent implements OnInit {
   user = new User();
   logerror = '';
   regerror = '';
-  constructor(private _service:BikeService, private _router:Router) { }
+  bike;
+  constructor(private _service:BikeService, private _router:Router) {
+    this._service.allBikes((data)=>{
+      console.log("bikes comp",data)
+      if(data.length == 1){
+        this.bike=data[0]
+      }else{
+        const randNum = (Math.floor(Math.random() * data.length) ) + 1;
+        this.bike = data[randNum]
+      }
+    })
+  }
 
   ngOnInit() {
   }

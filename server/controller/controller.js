@@ -124,6 +124,26 @@ module.exports = {
         res.json(bikes)
       }
     })
-  }
+  },
+  user:(req,res)=>{
+    User.findOne({_id:req.params.id},(err,bike)=>{
+      if(err){
+        console.log("error finding user")
+      }else{
+        res.json(bike)
+      }
+    })
+  },
+  logout: function(req,res){
+    console.log("hitting logout controller")
+    req.session.destroy(function(err){
+        if(err){
+            console.log(err)
+            res.json(err)
+        }else{
+          res.json(true)
+        }
+    })
+}
 
 }
