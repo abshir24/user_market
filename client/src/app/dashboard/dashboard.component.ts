@@ -9,6 +9,7 @@ import { BikeService } from 'app/bike.service';
 export class DashboardComponent implements OnInit {
   bikes = []
   user;
+  search_string = ''
   constructor(private _service:BikeService) { 
     this._service.allBikes((data)=>{
       console.log("constructor component data ", data)

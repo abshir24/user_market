@@ -10,6 +10,7 @@ import { RegComponent } from './reg/reg.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListingsComponent } from './listings/listings.component';
 import { UpdateComponent } from './update/update.component';
+import { NameFilterPipe } from './name-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UpdateComponent } from './update/update.component';
     RegComponent,
     DashboardComponent,
     ListingsComponent,
-    UpdateComponent
+    UpdateComponent,
+    NameFilterPipe
   ],
   imports: [
     BrowserModule,
